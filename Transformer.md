@@ -162,7 +162,9 @@ Let's understand why through an example:
 	-   User 1 bought 1x eggs, 1x flour and 1x sugar.
 	-   User 2 bought 100x eggs, 100x flour and 100x sugar
 	-   User 3 bought 1x eggs, 1x Vodka and 1x Red Bull
-	By cosine similarity, user 1 and user 2 are more similar. By euclidean similarity, user 3 is more similar to user 1. This is why we prefer to use consine similarity.
+	By cosine similarity, user 1 and user 2 are more similar. 
+	By euclidean similarity, user 3 is more similar to user 1. 
+	This is why we prefer to use consine similarity.
 
 So intuitively, if two words are synonymous, then their cosine similarity score would be high, if they are antonymous, then their cosine similarity score would be negative, and if they are unrelated, then their cosine similarity score would be close to zero i.e. the vectors are orthogonal.`
 
@@ -242,9 +244,15 @@ Next, to understand the contextual meaning of our query word $Q_i$, we compute d
 
 Let's understand why we employ distinct vector representations - Query (Q), Key (K), and Value (V) - for each word rather than using a single vector representation for all three purposes.
 
-	Consider a situation where the query word is "network". In this context, we would desire words like "neural" and "social" to generate high similarity scores, as the phrases "neural network" and "social network" are prevalent in language. This indicates that the dot product between the query vector and the key vectors for these words would be high, implying their similarity.
+	Consider a situation where the query word is "network". 
+	In this context, we would desire words like "neural" and "social" to generate high similarity scores, 
+	as the phrases "neural network" and "social network" are prevalent in language.
+	This indicates that the dot product between the query vector and the key vectors for these words would be high, 
+	implying their similarity.
 	
-	However, while "neural" and "social" may serve as similar keys in relation to "network", their value vectors must differ significantly because they pertain to distinct topics. If we used the same vector representation for both keys and values, this differentiation would not be possible. 
+	However, while "neural" and "social" may serve as similar keys in relation to "network", 
+	their value vectors must differ significantly because they pertain to distinct topics. 
+	If we used the same vector representation for both keys and values, this differentiation would not be possible. 
 
 Following that, a softmax function is applied to these scores. The softmax function essentially transforms the scores into a probability distribution, allowing the most relevant words to have higher weights.
 
