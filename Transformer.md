@@ -6,7 +6,7 @@ Many popular language AI models, including ChatGPT, are built using the transfor
 ![Illustration prompt -> DallE (transformer + diffusion model) -> answer](dalle.png)
 
 ## Overview
-I personally find it easier to figure out how to use something before understanding how it functions. That way when understanding how it works, I already know what to expect in the input, and the output. So for now, let's treat the transformer as a black box, and let's see how it works during the inference and training for the language translation task.
+I personally find it easier to figure out how to use something before understanding how it functions. That way when understanding how it works, I already know what to expect in the input and the output. So for now, let's treat the transformer as a black box, and let's see how it works during the inference and training for the language translation task.
 
 ### Inference
 During inference, the transformer predicts one token at a time, taking into account the previously predicted tokens as input and generating the next token in the sequence. For natural language processing tasks such as machine translation, the transformer takes in the source sentence as input and uses the previously predicted words of the translated sentence as additional input to generate the next word following each previously predicted words in the translated sequence.
@@ -34,7 +34,7 @@ The transformer then takes in input those two sequences, then generates *one* pr
 
 Since we supposed that the transformer is already trained, then the word with the highest probability is `J'`. We add `J'` to the *currently predicted sentence*.
 
-So now we have `["I", "love", "oranges", "."]` and `["<start>", "J'"]`
+So now we have `["I", "love", "oranges", "."]` and `["<start>", "J'"]`.
 With tokenization, we have `[10, 35, 20, 49]` and `[40, 20]`, assuming `20` represents `J'`.
 Notice that we have two different tokenizers for English and French.
 
@@ -79,16 +79,16 @@ For example, if the source sentence is "I love oranges." and the target sentence
  - from `["<start>", "J'", "aime", "les", "oranges"]` predict `.`
  - from `["<start>", "J'", "aime", "les", "oranges", "."]` predict `<end>`
 
-The cool thing about transformer is that during training it doesn't have to predict every tokens sequentially, but in parallel so it will predict the whole sentence in one step, which makes the training process much faster.
+The cool thing about transformer is that during training it doesn't have to predict every tokens sequentially, but in parallel so it will predict the whole sentence in one step, which makes the training process much faster. 
+Here's the ideal schema of what we want the transformer to predict during the training:
 
 ![prediction](prediction.png)
 
 So the target sentence is `["J'", "aime", "les", "oranges", ".", "<end>"]`
 Notice the target sentence length is 6.
 To calculate the loss, we first tokenize the target sentence, then convert it into one-hot vectors equal to the size of the vocabulary.
-![Target -> tokenize -> one hot](target_onehot.png)
 
-Next, the transformer outputs six vectors of the vocabulary size, which we apply the softmax function to, resulting in six probability vectors. We can then compute the cross-entropy loss between the predictions and the target.
+Next, the transformer outputs six vectors of the vocabulary size, which we apply the softmax function to, resulting in 6 probability vectors. We can then compute the cross-entropy loss between the predictions and the target.
 
 ![Transformer outputs 6 vectors of vocabulary size](prediction_6vectors.png)
 
@@ -128,6 +128,11 @@ Similarly, in image captioning tasks, the `Inputs` sequence would represent the 
 
 Input embedding layer are used to project vectors into latent space. This layer varies depending the task, so let's limit ourselves to NLP tasks. In this case, this layer is used to convert tokens (words) into vectors of features (called `embeddings`) by associating each token with a vector of size `d_model` (a hyperparameter) that ideally represents some features of the word.
 
+![example of embedding](exembedding.png)
+
+Here for instance, the token `10` is associated with the vector `[0.2, -0.5, ..., 1.2, -0.7]` and so on.
+
+Here's is a pseudo-python code on how to create this layer:
 ```python
 embedding_matrix = ... # shape (vocabulary size, d_model)
 
