@@ -177,7 +177,7 @@ So intuitively, if two words are synonymous, then their cosine similarity score 
 
 ![posenc](posenc_box.png)
 
-The transformer process every tokens in parallel, thus it doesn't know the position of each token in the sequence. Which is why we need to encode the position of each token in the sequence or otherwise, for the transformer, these two sentences are the same:
+The transformer process every tokens in parallel, thus it doesn't know the position of each token in the sequence. Which is why we need to encode the position of each token in the sequence or otherwise, for the transformer, these two sentences would be the same:
  - I like oranges and I don't like apples.
  - I like apples and I don't like oranges.
 
@@ -222,6 +222,7 @@ Quote from the original paper: "We also experimented with using learned position
 
 ### 3. Multi-head Self Attention
 ![rectangle_mha_layer](rectangle_mha_layer.png)
+
 #### 3.1 Single-head Self-Attention
 #### Intuition
 Consider the sentence "I love eating orange.".
