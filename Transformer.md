@@ -284,7 +284,15 @@ The intuition here is that each head can focus on a different aspect of the inpu
 
 Once we have the output from each head, we need to recombine these outputs to get our final sequence of vectors. This is done by concatenating the outputs from all heads along the feature axis, resulting in a tensor of shape $(S, F)$.
 
+The splitting is illustrated below:
+
+![splithead](splithead.png)
+
+Then we pass each head through a single-head self-attention layer:
+
 ![multihead](multihead.png)
+
+![concatenatehead](concatenatehead.png)
 
 Then, to transform this back to our original feature space, we apply a final linear transformation. The weights of this transformation are learned during the training process, allowing the model to determine the best way to integrate the information from all the heads.
 
