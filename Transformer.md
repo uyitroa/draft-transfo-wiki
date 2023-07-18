@@ -270,7 +270,10 @@ $$\text{score} = \text{softmax}\left(\frac{Q K^\top}{\sqrt{d}}\right)$$
 The final step involves creating a new vector for each $Q_i$. This is achieved by calculating the weighted sum of the value vectors $(V_j)_j$ of all words in the sentence, where the weights are the softmax scores. This process shifts the original vector of $Q_i$ towards a more accurate semantic meaning position in the vector space, giving a semantically rich representation in the context of the sentence.
 
 We can also parallelise to get all new $(V_j')_j$ by using a matrix product: $$V' = \text{score} \cdot V$$
+Illustration:
+
 ![attention](attention.png)
+
 
 #### 3.2 Multi-head Self-Attention
 In the single-head attention mechanism, we apply the attention process once on the input data. For multi-head attention, we apply this process multiple times (hence "multi-head"): 
