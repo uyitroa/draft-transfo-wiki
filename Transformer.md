@@ -300,7 +300,9 @@ The entire process can be represented as:
 
 $$\text{MultiHead}(Q,K,V)=\text{Concat}(\text{head}_1,…,\text{head}_h)W_O$$
 where  $$\text{head}_i=\text{Attention}(Q^{(i)},K^{(i)},V^{(i)})$$
+
 Illustration:
+
 ![mha-illustration](mha-illustration.png)
 
 The MultiHead operation's output will be a tensor with shape $(S, F)$, just like the original input.
