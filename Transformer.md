@@ -248,6 +248,8 @@ For each vector of the sequence, three vectors are generated - the Query, Key, a
 
 Next, to understand the contextual meaning of our query word $Q_i$, we compute dot products between each query vector $Q_i$ and the key vectors $(K_j)_{j}$ of all other words in the sentence. This yields a set of similarity scores, signifying how closely each word in the sentence relates to $Q_i$, and we do this for each $i$.
 
+![qkv_dotprod](qkv_dotprod.png)
+
 Let's understand why we employ distinct vector representations - Query (Q), Key (K), and Value (V) - for each word rather than using a single vector representation for all three purposes.
 
 	Consider a situation where the query word is "network". 
